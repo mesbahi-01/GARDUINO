@@ -18,7 +18,7 @@ such as :
 
 ## Screenshots
 
-![Home page](.\src\images\demo_1.jpeg)
+![Home page](https://github.com/mesbahi-01/GARDUINO/blob/master/client/src/images/demo_1.jpeg)
 
 
 ## Run Locally
