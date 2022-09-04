@@ -4,12 +4,11 @@
 const express = require('express');
 const cors = require('cors');
 const twilio = require('twilio');
-const { response } = require('express');
 const dotenv = require('dotenv').config();
 
 //twilio requirements -- Texting API 
 
-const client = new twilio(dotenv.parsed.accountSid, dotenv.parsed.authToken);
+const client = new twilio(dotenv.parsed.TWILIO_ACCOUNT_SID, dotenv.parsed.TWILIO_AUTH_TOKEN);
 const app = express(); //alias
 
 app.use(cors()); //Blocks browser from restricting any data
@@ -17,8 +16,8 @@ app.use(cors()); //Blocks browser from restricting any data
 app.get('/send-text', (req, res) => {
     client.messages.create({
         body: 'START',
-        to: dotenv.parsed.reciever,  // Text this number
-        from: dotenv.parsed.sender // From a valid Twilio number
+        to: dotenv.parsed.CART_SIM_NUMBER,  // Text this number
+        from: dotenv.parsed.TWILIO_PHONE_NUMBER // From a valid Twilio number
     }).then((message) => {
         console.log(message);
         if (message.status == 'queued') {

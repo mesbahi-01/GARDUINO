@@ -1,32 +1,39 @@
+# Measure anything, anywhere
+Garduino offers a simple way to get real-time measurements for your garden. Now you can measure all the important factors that affect your plants growth with just a few clicks.
 
-# Garduino Project
-The web App can :
-1) talk to an  IoT platform { ThingSpeak } that
-stores data sent from an arduino device.
-the arduino used in this project can measure real-life values 
-such as : 
-    soil moisture
-    air humidity 
-    air temperature
-    light intensity
- 
-2) Visualize all the measurements - soil moisture air humidity ... - using an area chart.
+## Features section:
+### Monitor your plants
 
-3) send a Text message to an arduino inorder to start an operation for example activate the pump responsible on watering the plant
+Monitor soil moisture, air humidity, air temperature, light intensity and other important environmental factors in your garden. 
 
-4) provide a briefe weather forecast.
+### Know what's going on inside and outside
+
+Get detailed information of the measurements made by Garduino , moreover it can provide you a brief weather forecast .
+
+### Work remotely or hands-on
+
+there's no need to worry about watering or fertilizing anymore! the arduino do all the heavy lefting for you ,and even if you want to do that yourself ,easy just click a button or send it a message from your phone .
 
 ## Screenshots
 
-![Home page](https://github.com/mesbahi-01/GARDUINO/blob/master/client/src/images/demo_1.jpeg)
+![Home page](https://github.com/mesbahi-01/GARDUINO/blob/master/client/src/images/demo_01.jpeg)
 
+## Environment Variables
 
-## Run Locally
+To run this project, you will need to add the following environment variables to your .env file
+
+`TWILIO_ACCOUNT_SID`
+`TWILIO_AUTH_TOKEN`
+`TWILIO_PHONE_NUMBER`
+`CART_SIM_NUMBER`
+`OPENWEATHER_API_KEY`
+
+## To Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/mesbahi-01/GARDUINO.git
 ```
 
 Go to the project directory
@@ -34,7 +41,28 @@ Go to the project directory
 ```bash
   cd GARDUINO_PROJECT
 ```
+Go to the app directory
 
+```bash
+  cd app
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+Start the React app 
+
+```bash
+  npm start
+```
+
+Go to the server directory
+
+```bash
+  cd ../server
+```
 Install dependencies
 
 ```bash
@@ -45,8 +73,4 @@ Start the server
 
 ```bash
   npm run dev
-```
-start React app
-```bash
-  npm start
 ```

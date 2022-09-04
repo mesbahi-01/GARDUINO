@@ -16,15 +16,18 @@ const App = () => {
   const [field, setField] = useState("field1");
 
   const THINGHSPEAK_URL = process.env.REACT_APP_THINGHSPEAK_URL;
+  const REACT_APP_THINGHSPEAK_URL = process.env.REACT_APP_THINGHSPEAK_URL;
+  const REACT_APP_THINGHSPEAK_API_KEY = process.env.REACT_APP_THINGHSPEAK_API_KEY;
 
   // a function to retrieve the date stored in our channel useing Thingspeak's api
+  // 
+  // `${REACT_APP_THINGHSPEAK_URL}api_key=${REACT_APP_THINGHSPEAK_API_KEY}&results=6`
   const fetchMeasurements = async () => {
     setIsLoading(true);
-    const response = await fetch("https://api.thingspeak.com/channels/1806362/feeds.json?api_key=UJG5F3GCKR8R8FRK&results=12");
-    const data = await response.json();
-    console.log(data);
-    setMeasurements(data);
-    setIsLoading(false);
+    const response = await fetch("https://api.thingspeak.com/channels/1806362/feeds.json?api_key=UJG5F3GCKR8R8FRK&results=6")
+    const data = await response.json()
+    setMeasurements(data)
+    setIsLoading(false)
   };
 
   // retriave the data after we render the view
@@ -33,7 +36,7 @@ const App = () => {
   }, []);
 
   // call the function "fetchMeasurments" every 15 minutes
-  setInterval(fetchMeasurements, 900000); 
+  setInterval(fetchMeasurements, 900000);
 
   // if we are fetching the data from Thinkspeak display the LOADING view
   if (isLoading) {
@@ -53,9 +56,9 @@ const App = () => {
     )
   }
 
-  // display the FORCAST bar + the BUTTONS to change the graphe + and the CHART 
+  // display the FORCAST bar + the BUTTONS to change the graphe + the CHART 
   return <>
-    <main className='forcast' >
+    <main className="layout" >
       <Forcast></Forcast>
       <ButtonGroup vertical className='btns'>
         <Button onClick={() => setField("field1")}>temperature </Button>
