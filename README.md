@@ -16,7 +16,7 @@ there's no need to worry about watering or fertilizing anymore! the arduino do a
 
 ## Screenshots
 
-![Home page](https://github.com/mesbahi-01/GARDUINO/blob/master/client/src/images/demo_01.jpeg)
+![Home page](https://github.com/mesbahi-01/GARDUINO/blob/master/app/src/images/demo_01.jpeg)
 
 ## Environment Variables
 
