@@ -15,16 +15,15 @@ const App = () => {
   const [measurements, setMeasurements] = useState({});
   const [field, setField] = useState("field1");
 
-  const THINGHSPEAK_URL = process.env.REACT_APP_THINGHSPEAK_URL;
   const REACT_APP_THINGHSPEAK_URL = process.env.REACT_APP_THINGHSPEAK_URL;
   const REACT_APP_THINGHSPEAK_API_KEY = process.env.REACT_APP_THINGHSPEAK_API_KEY;
 
   // a function to retrieve the date stored in our channel useing Thingspeak's api
-  // 
+  // "https://api.thingspeak.com/channels/1806362/feeds.json?api_key=UJG5F3GCKR8R8FRK&results=6"
   // `${REACT_APP_THINGHSPEAK_URL}api_key=${REACT_APP_THINGHSPEAK_API_KEY}&results=6`
   const fetchMeasurements = async () => {
     setIsLoading(true);
-    const response = await fetch("https://api.thingspeak.com/channels/1806362/feeds.json?api_key=UJG5F3GCKR8R8FRK&results=6")
+    const response = await fetch(`${REACT_APP_THINGHSPEAK_URL}api_key=${REACT_APP_THINGHSPEAK_API_KEY}&results=6`)
     const data = await response.json()
     setMeasurements(data)
     setIsLoading(false)

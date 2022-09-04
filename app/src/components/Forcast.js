@@ -18,7 +18,8 @@ const Forcast = () => {
 
     const [sunSet_, setSunSet_] = useState(0);
     const [sunRise_, setSunRise_] = useState(0);
-
+    const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+    const REACT_APP_OPENWEATHER_API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
     const fetchWeather = () => {
         // Checking if geolocation is available
         if ("geolocation" in navigator) {
@@ -32,7 +33,7 @@ const Forcast = () => {
                 // after getting coordinates, we will use API to get weather info
                 // https://api.openweathermap.org/data/2.5/weather?lat=34.0368&lon=-5.0008&units=metric&appid=ccc0aef09260420369d2c887f3c84dcb
                 axios(
-                    "https://api.openweathermap.org/data/2.5/weather?lat=34.0368&lon=-5.0008&units=metric&appid=ccc0aef09260420369d2c887f3c84dcb"
+                    `${REACT_APP_API_URL}/weather?lat=${lat}&lon=${long}&units=metric&appid=${REACT_APP_OPENWEATHER_API_KEY}`
                 )
                     .then((res) => {
                         // Assigning data if the res-status is OK
@@ -68,7 +69,9 @@ const Forcast = () => {
                 console.log(err)
             })
     }
-    useEffect(() => fetchWeather(), []);
+    useEffect(() => {
+        fetchWeather();
+    }, []);
     setInterval(fetchWeather, 900000); // update the weather every 15 minutes
     // update the locale time every 1 second 
     setInterval(() => {
