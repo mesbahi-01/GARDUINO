@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import time from '../images/time.png'
 import SendIcon from '@mui/icons-material/Send'
 import humidity_ from '../images/humidity.png'
+import { format } from 'date-fns'
 const Forcast = () => {
 
     const [currentTime, setCurrentTime] = useState("");
@@ -18,8 +19,7 @@ const Forcast = () => {
 
     const [sunSet_, setSunSet_] = useState(0);
     const [sunRise_, setSunRise_] = useState(0);
-    const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
-    const REACT_APP_OPENWEATHER_API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
+    
     const fetchWeather = () => {
         // Checking if geolocation is available
         if ("geolocation" in navigator) {
@@ -30,20 +30,17 @@ const Forcast = () => {
                 localStorage.setItem("summerx_lat", lat);
                 localStorage.setItem("summerx_long", long);
                 localStorage.setItem("summerx_locationPermission", true);
-                // after getting coordinates, we will use API to get weather info
-                // https://api.openweathermap.org/data/2.5/weather?lat=34.0368&lon=-5.0008&units=metric&appid=ccc0aef09260420369d2c887f3c84dcb
-                axios(
-                    `${REACT_APP_API_URL}/weather?lat=${lat}&lon=${long}&units=metric&appid=${REACT_APP_OPENWEATHER_API_KEY}`
-                )
+                const weather_api_url = `/weather/${lat},${long}`
+                axios(weather_api_url)
                     .then((res) => {
                         // Assigning data if the res-status is OK
-                        if (res.status >= 200 || res.status < 300) {
+                        // if (res.status >= 200 || res.status < 300) {
                             const base = res.data.main;
                             setFeelLike(parseInt(base.feels_like));
                             setHumidity(parseInt(base.humidity));
-                            setSunRise_(() => new Date(res.data.sys.sunrise).toLocaleTimeString());
-                            setSunSet_(() => new Date(res.data.sys.sunset + 47220000).toLocaleTimeString());
-                        }
+                            setSunRise_(() => format(new Date(res.data.sys.sunrise), 'p'));
+                            setSunSet_(() => format(new Date(res.data.sys.sunset + 47220000), 'p'));
+                        // }
                     }).catch((error) => console.log(error))
             })
         } else {
@@ -52,15 +49,15 @@ const Forcast = () => {
     }
 
     // send a Text message to the aduino 
-    const sendText = _ => {
-        fetch(`/send-text`)
+    const sendText = () => {
+        fetch("/send-text")
             .then(res => {
                 if (res.status >= 200 && res.status <= 299) {
                     setColor("success")
                     setTimeout(() => setColor("primary"), 3000)
                 }
                 else {
-                    setColor("secondry")
+                    setColor("error")
                     setTimeout(() => setColor("primary"), 3000)
                 }
             })
@@ -75,12 +72,11 @@ const Forcast = () => {
     setInterval(fetchWeather, 900000); // update the weather every 15 minutes
     // update the locale time every 1 second 
     setInterval(() => {
-        setCurrentTime(() => {
-            let current_time = new Date();
-            return current_time.toLocaleTimeString().slice(0, 8);
-        });
-    }, 1000);
-
+        setCurrentTime(() => format(new Date(), "p"));
+    }, 60000);
+    setTimeout(() => {
+        setCurrentTime(() => format(new Date(), "p"));
+    }, 1000)
     return (
         <header className="item1">
             <img src={time} alt="" className="time_img" />
