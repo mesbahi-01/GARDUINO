@@ -19,7 +19,7 @@ const Forcast = () => {
 
     const [sunSet_, setSunSet_] = useState(0);
     const [sunRise_, setSunRise_] = useState(0);
-    
+
     const fetchWeather = () => {
         // Checking if geolocation is available
         if ("geolocation" in navigator) {
@@ -31,16 +31,13 @@ const Forcast = () => {
                 localStorage.setItem("summerx_long", long);
                 localStorage.setItem("summerx_locationPermission", true);
                 const weather_api_url = `/weather/${lat},${long}`
-                axios(weather_api_url)
+                fetch(weather_api_url)
+                    .then((res) => res.json())
                     .then((res) => {
-                        // Assigning data if the res-status is OK
-                        // if (res.status >= 200 || res.status < 300) {
-                            const base = res.data.main;
-                            setFeelLike(parseInt(base.feels_like));
-                            setHumidity(parseInt(base.humidity));
-                            setSunRise_(() => format(new Date(res.data.sys.sunrise), 'p'));
-                            setSunSet_(() => format(new Date(res.data.sys.sunset + 47220000), 'p'));
-                        // }
+                        setFeelLike(parseInt(res.main.feels_like));
+                        setHumidity(parseInt(res.main.humidity));
+                        setSunRise_(() => format(new Date(res.sys.sunrise), 'p'));
+                        setSunSet_(() => format(new Date(res.sys.sunset + 47220000), 'p'));
                     }).catch((error) => console.log(error))
             })
         } else {
@@ -60,6 +57,7 @@ const Forcast = () => {
                     setColor("error")
                     setTimeout(() => setColor("primary"), 3000)
                 }
+                console.log(res);
             })
             .catch((err) => {
                 // alert('Something went wrong please try again')
