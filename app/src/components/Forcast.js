@@ -60,12 +60,12 @@ const Forcast = () => {
                     setTimeout(() => setColor("primary"), 3000)
                 }
                 else {
-                    setColor("secondry")
+                    setColor("error")
                     setTimeout(() => setColor("primary"), 3000)
                 }
             })
             .catch((err) => {
-                // alert('Something went wrong please try again')
+                alert('Something went wrong please try again')
                 console.log(err)
             })
     }
