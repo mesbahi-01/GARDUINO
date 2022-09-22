@@ -1,21 +1,22 @@
-import { AreaChart, XAxis, CartesianGrid, Tooltip, YAxis, Area, ResponsiveContainer, Legend, Label } from 'recharts';
+import { AreaChart, XAxis, CartesianGrid, Tooltip, YAxis, Area, ResponsiveContainer} from 'recharts';
 import '../css/App.css';
 import '../css/index.css';
+import moment from 'moment'
 import React from 'react';
 
 
 const CustomTooltip = ({ active, payload, label }) => {
-    const date = new Date(label);
-    label = date.toTimeString().slice(0, 5);
+    /* const date = new Date(label);
+    label = date.toTimeString().slice(0, 5); */
+    label = moment(label).format('LT');
     if (active && payload && payload.length) {
         return (
             <div className="tool_tip">
-                <span >Time  {label}</span>
-                <span >value : {payload[0].value}</span>
+                <span >AT  {label}</span>
+                <span >{payload[0].value}</span>
             </div>
         );
     }
-
 }
 const Chart = ({ field, measurements }) => {
     return <>
