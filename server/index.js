@@ -9,12 +9,13 @@ const path = require('path')
 const client = new twilio(dotenv.parsed.TWILIO_ACCOUNT_SID, dotenv.parsed.TWILIO_AUTH_TOKEN);
 const app = express();
 
-app.use(express.static(path.join(__dirname,"public"))) //to serve static files
+// app.use(express.static("build")) //to serve static files
+// app.use(express.static(path.join(__dirname,"public","build"))//to serve static files
+app.use(express.static(path.join(__dirname, 'public','build')))
 app.use(cors()); //Blocks browser from restricting any data
 
 app.get('/', (req, res) => {
-    res.sendFile("index.html", { root: __dirname })
-    console.log(__dirname);
+    res.sendFile("public/build/index.html",{root:__dirname})
 });
 
 app.get('/api/send-text', (req, res) => {

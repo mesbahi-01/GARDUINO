@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.78d24a7b.css",
-    "main.js": "/static/js/main.5e9f4cc4.js",
+    "main.js": "/static/js/main.19e4ed17.js",
     "static/media/time.png": "/static/media/time.c629a7d2ab11873a85e8.png",
     "static/media/temperatur.png": "/static/media/temperatur.75395f5bb3d718b05f97.png",
     "static/media/humidity.png": "/static/media/humidity.5644e562061c0c13f2bb.png",
@@ -9,10 +9,10 @@
     "static/media/sunSet.png": "/static/media/sunSet.2f2d2a5510dca1b2ab09.png",
     "index.html": "/index.html",
     "main.78d24a7b.css.map": "/static/css/main.78d24a7b.css.map",
-    "main.5e9f4cc4.js.map": "/static/js/main.5e9f4cc4.js.map"
+    "main.19e4ed17.js.map": "/static/js/main.19e4ed17.js.map"
   },
   "entrypoints": [
     "static/css/main.78d24a7b.css",
-    "static/js/main.5e9f4cc4.js"
+    "static/js/main.19e4ed17.js"
   ]
 }

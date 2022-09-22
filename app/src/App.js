@@ -70,7 +70,7 @@ const App = () => {
   useEffect(() => {
     fetchAllData();         // update Measurments each 10 minutes
     setTimeout(() => setIsLoading(false), 2000)
-    const timerID_1 = setInterval(fetchMeasurements, 60000);
+    const timerID_1 = setInterval(fetchMeasurements, 600000);
     const timerID_2 = setInterval(fetchWeather, 600000); // update the weather every 10 minutes
     // clear intervals after unmounting
     return () => {
