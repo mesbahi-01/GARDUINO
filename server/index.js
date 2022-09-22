@@ -1,23 +1,23 @@
-//Dependencies: 
-//yarn add express cors twilio 
-
 const express = require('express');
 const cors = require('cors');
 const twilio = require('twilio');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv').config();
-/* const path = require('path')
-app.use('/static', express.static(path.join(__dirname, 'public'))) */
+const path = require('path')
+
 //twilio requirements -- Texting API 
 const client = new twilio(dotenv.parsed.TWILIO_ACCOUNT_SID, dotenv.parsed.TWILIO_AUTH_TOKEN);
-const app = express(); //alias
+const app = express();
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname,"public"))) //to serve static files
 app.use(cors()); //Blocks browser from restricting any data
+
 app.get('/', (req, res) => {
-    res.sendFile("./public/index.html", { root: __dirname })
-})
-app.get('/send-text', (req, res) => {
+    res.sendFile("index.html", { root: __dirname })
+    console.log(__dirname);
+});
+
+app.get('/api/send-text', (req, res) => {
     client.messages.create({
         body: 'START',
         to: dotenv.parsed.CART_SIM_NUMBER,  // Text this number
@@ -27,12 +27,12 @@ app.get('/send-text', (req, res) => {
         if (message.status == 'queued') {
             res.status(200).send();
         } else {
-            res.status(301).send();
+            res.status(501).send();
         }
     })
-})
+});
 
-app.get('/weather/:latlon', async (request, response) => {
+app.get('/api/weather/:latlon', async (request, response) => {
     const latlon = request.params.latlon.split(',');
     const lat = latlon[0];
     const lon = latlon[1];
@@ -45,7 +45,7 @@ app.get('/weather/:latlon', async (request, response) => {
 
     response.json(weather_data);
 });
-app.get('/measurements', async (request, response) => {
+app.get('/api/measurements', async (request, response) => {
 
     const THINGHSPEAK_URL = process.env.THINGHSPEAK_URL;
     const THINGHSPEAK_API_KEY = process.env.THINGHSPEAK_API_KEY;
@@ -56,4 +56,6 @@ app.get('/measurements', async (request, response) => {
     response.json(data);
 });
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`server started on port  : ${PORT}`)
+});
