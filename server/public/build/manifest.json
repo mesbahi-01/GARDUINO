@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Garduino",
+  "name": "web application to moniter greenhouses",
   "icons": [
     {
       "src": "favicon.ico",
