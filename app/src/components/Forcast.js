@@ -28,7 +28,7 @@ const Forcast = ({ weather_data }) => {
                 console.log(res);
             })
             .catch((err) => {
-                // alert('Something went wrong please try again')
+                alert('Something went wrong please try again')
                 console.log(err)
             })
     }
