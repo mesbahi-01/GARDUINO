@@ -6,14 +6,25 @@ import React from 'react';
 
 
 const CustomTooltip = ({ active, payload, label }) => {
-    /* const date = new Date(label);
-    label = date.toTimeString().slice(0, 5); */
+
     label = moment(label).format('LT');
     if (active && payload && payload.length) {
+        var unit = '';
+        switch (payload[0].dataKey) {
+            case 'field1':
+                unit = ' °c';
+                break;
+            case 'field4':
+                unit = ' lux';
+                break;
+            default:
+                unit = '%'
+                break;
+        }
         return (
             <div className="tool_tip">
                 <span >AT  {label}</span>
-                <span >{payload[0].value}</span>
+                <span >{parseInt(payload[0].value)}{unit}</span>
             </div>
         );
     }
