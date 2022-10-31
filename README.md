@@ -1,26 +1,14 @@
-# Measure anything, anywhere
-Garduino offers a simple way to get real-time measurements for your garden. Now you can measure all the important factors that affect your plants growth with just a few clicks.
+# Garduino
+a web application offers a simple way to get real-time measurements of your greenhouse.
 
 ## Features section:
-### Monitor your plants
 
-Monitor soil moisture, air humidity, air temperature, light intensity and other important environmental factors in your garden. 
-
-### Know what's going on inside and outside
-
-Get detailed information of the measurements made by Garduino , moreover it can provide you a brief weather forecast .
-
-### Work remotely or hands-on
-
-there's no need to worry about watering or fertilizing anymore! the arduino do all the heavy lefting for you ,and even if you want to do that yourself ,easy just click a button or send it a message from your phone .
 
 ## Screenshots
 
 ![Home page](https://github.com/mesbahi-01/GARDUINO_project/blob/master/app/src/images/demo_01.jpeg)
 
 ## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
 
 `TWILIO_ACCOUNT_SID`
 `TWILIO_AUTH_TOKEN`
@@ -47,7 +35,7 @@ Go to the app directory
   cd app
 ```
 
-Install dependencies
+Install the dependencies
 
 ```bash
   npm install
@@ -63,7 +51,7 @@ Go to the server directory
 ```bash
   cd ../server
 ```
-Install dependencies
+Install the dependencies
 
 ```bash
   npm install
