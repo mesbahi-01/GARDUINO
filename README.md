@@ -1,9 +1,3 @@
-# Garduino
-a web application offers a simple way to get real-time measurements of your greenhouse.
-
-## Features section:
-
-
 ## Screenshots
 
 ![Home page](https://github.com/mesbahi-01/GARDUINO_project/blob/master/app/src/images/demo_01.jpeg)
